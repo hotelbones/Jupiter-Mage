@@ -32,7 +32,8 @@ public class GridManager : MonoBehaviour
             for (int col = 0; col < cols; col++)
             {
                 tile[col,row] = (GameObject)Instantiate(referenceTile, transform);
-                Debug.Log(tile[col, row]);
+                tile[col,row].name = "cavefloortile[" + col + "," + row + "]";
+                //Debug.Log(tile[col, row]);
 
                 float posX = col * tileSize;
                 float posY = row * -tileSize;

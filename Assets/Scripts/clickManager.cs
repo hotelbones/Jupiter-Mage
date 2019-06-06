@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class clickManager : MonoBehaviour
 {
+
+    public Collider2D selectedTile; 
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,8 @@ public class clickManager : MonoBehaviour
             Debug.Log(hit.collider.gameObject.name);
 
             if (hit.collider != null){
-            Debug.Log("Something was clicked!");
+            selectedTile = hit.collider;
+//            Debug.Log(selectedTile);
         }
         }
 
