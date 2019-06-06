@@ -12,7 +12,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
        // gameObject.transform.position = gridScript.tile[1,1].transform.position;
-        Debug.Log(gridScript.tile[1,1].transform.position);
+       // Debug.Log(gridScript.tile[1,1].transform.position);
 
     }
 
