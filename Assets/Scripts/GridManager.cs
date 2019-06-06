@@ -7,10 +7,16 @@ public class GridManager : MonoBehaviour
 {
     public int rows = 5;
     public int cols = 8;
-    int row;
-    int col;
+    public int initiationMinPosX;
+    public int initiationMaxPosX;
+    public int initiationMinPosY;
+    public int initiationMaxPosY;
+    public  int row;
+    public  int col;
     public float tileSize = 1;
     public GameObject [,] tile;
+
+    SpriteRenderer highlighter;
     
     
 
@@ -19,6 +25,7 @@ public class GridManager : MonoBehaviour
     void Start()
     {
         GenerateGrid();
+       
         
     }
 
@@ -39,6 +46,17 @@ public class GridManager : MonoBehaviour
                 float posY = row * -tileSize;
 
                 tile[col,row].transform.position = new Vector2(posX, posY);
+                Collider2D tileEnabler = tile[col,row].GetComponent<Collider2D>();
+                tileEnabler.enabled = false;
+                
+
+                if (col >= initiationMinPosX && row >= initiationMinPosY && col <= initiationMaxPosX && row <= initiationMaxPosY){
+                    Debug.Log("running!");
+                    highlighter = tileEnabler.GetComponent<SpriteRenderer>();
+                    highlighter.color = Color.blue;
+                    tileEnabler.enabled = true;
+                }
+
             }
 
         }

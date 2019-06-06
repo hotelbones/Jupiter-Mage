@@ -234,6 +234,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 5
   cols: 8
+  initiationMinPosX: 2
+  initiationMaxPosX: 4
+  initiationMinPosY: 3
+  initiationMaxPosY: 4
+  row: 0
+  col: 0
   tileSize: 1
 --- !u!4 &657844972
 Transform:
@@ -281,10 +287,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridScript: {fileID: 657844971}
   clickScript: {fileID: 1159129278}
+  initiated: 1
   minZoneX: 0
   maxZoneX: 0
   minZoneY: 0
-  maxZoney: 0
+  maxZoneY: 3
 --- !u!4 &1122649073
 Transform:
   m_ObjectHideFlags: 0
@@ -391,4 +398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574a966dce15bfd41b8d52da1e6cd558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedTile: {fileID: 0}
+  playerScript: {fileID: 1122649072}
+  gridScript: {fileID: 657844971}
+  gameStart: 0

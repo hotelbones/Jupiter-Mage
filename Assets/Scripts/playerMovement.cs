@@ -6,11 +6,12 @@ public class playerMovement : MonoBehaviour
 {
     public GridManager gridScript;
     public clickManager clickScript;
-    bool initiated = false;
-    public float minZoneX;
-    public float maxZoneX;
-    public float minZoneY;
-    public float maxZoney;
+    public bool initiated = true;
+    public float minZoneX = 2;
+    public float maxZoneX = 5;
+    public float minZoneY = 4;
+    public float maxZoneY = 3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,24 +25,20 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         
-        if (initiated == false){
-            Initiation();  
-
-        } else {
-
-        }
+        
         
     }
 
-    void Initiation()
+    public void Initiation()
     {
-        if(Input.GetMouseButtonDown(0)){
+        
 
-          //  if clicked tile fits within the min/max parameters, move tile to that place and end initiation
-
-            Debug.Log(clickScript.selectedTile);
-            gameObject.transform.position = clickScript.selectedTile.transform.position;
+          //  the character is moved to the clicked tile based on requirements from the grid manager script
+            Debug.Log ("its working!");
+            gameObject.transform.position = clickScript.selectedTile[gridScript.col, gridScript.row].transform.position;
             
-        }
+            clickScript.gameStart = true;
+
+        
     }
 }
