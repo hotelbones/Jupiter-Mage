@@ -39,6 +39,8 @@ public class playerMovement : MonoBehaviour
             
             clickScript.gameStart = true;
 
+            gridScript.postOrientation();
+
         
     }
 }

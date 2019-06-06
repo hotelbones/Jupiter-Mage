@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
                 Collider2D tileEnabler = tile[col,row].GetComponent<Collider2D>();
                 tileEnabler.enabled = false;
                 
-
+                //If the generated tile is within the given limits, it will also generate a collider, then color those tiles blue.
                 if (col >= initiationMinPosX && row >= initiationMinPosY && col <= initiationMaxPosX && row <= initiationMaxPosY){
                     Debug.Log("running!");
                     highlighter = tileEnabler.GetComponent<SpriteRenderer>();
@@ -61,12 +61,24 @@ public class GridManager : MonoBehaviour
 
         }
 
-      //  Debug.Log(tile[1,1].transform.position);
         Destroy(referenceTile);
 
         float gridW = cols * tileSize;
         float gridH = rows * tileSize;
         transform.position = new Vector2(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
+    }
+
+    public void postOrientation(){
+         for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            {   highlighter = tile[col,row].GetComponent<SpriteRenderer>();
+                if (highlighter.color == Color.blue){
+                    
+                    highlighter.color = new Color(255, 255, 255);
+                }
+            }
+        }
     }
 
     // Update is called once per frame
