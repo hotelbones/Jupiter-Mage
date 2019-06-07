@@ -5,15 +5,21 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public int rows = 5;
-    public int cols = 8;
+    public int rows;
+    public int cols;
     public int initiationMinPosX;
     public int initiationMaxPosX;
     public int initiationMinPosY;
     public int initiationMaxPosY;
+    public int myxoMinPosX;
+    public int myxoMaxPosX;
+    public int myxoMinPosY;
+    public int myxoMaxPosY;
     
     public  int row;
     public  int col;
+
+    //tileSize determines how far apart the tiles are from one another. It may also be possible for bigger sprites to make up the grid. 
     public float tileSize = 1;
     public GameObject [,] tile;
 
@@ -22,6 +28,8 @@ public class GridManager : MonoBehaviour
     public playerMovement playerScript;
 
     public clickManager clickScript;
+
+    public slimeManager slimeScript;
     Collider2D tileEnabler;
     
     
@@ -68,12 +76,15 @@ public class GridManager : MonoBehaviour
             }
 
         }
+        slimeScript.GenerateSlime();
 
         Destroy(referenceTile);
 
         float gridW = cols * tileSize;
         float gridH = rows * tileSize;
         transform.position = new Vector2(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
+
+
     }
 
     //Resets all the grid blocks after the initial placement
