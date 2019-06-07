@@ -22,6 +22,7 @@ public class clickManager : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
+
             //The click creates a raycast that detects any colliders below the mouse
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -30,7 +31,10 @@ public class clickManager : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
 
             if (hit.collider != null){
-           
+            
+            if (playerScript.prepSelect != null){
+            playerScript.prepSelect.color = Color.blue;
+            }
             //selectedTile[gridScript.col,gridScript.row] = hit.collider;
             for(int row = 0; row < gridScript.rows; row++){
                // Debug.Log(row);

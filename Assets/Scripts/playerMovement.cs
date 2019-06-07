@@ -11,7 +11,7 @@ public class playerMovement : MonoBehaviour
     public float capacityY;
     public float movementSpeedX;
     public float movementSpeedY;
-    SpriteRenderer prepSelect;
+    public SpriteRenderer prepSelect;
     public bool prepCheck = false;  
 
 
