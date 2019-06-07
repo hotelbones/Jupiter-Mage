@@ -232,12 +232,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd410757fb3fe6478259b2f3c3236fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 5
-  cols: 8
+  rows: 10
+  cols: 10
   initiationMinPosX: 2
-  initiationMaxPosX: 4
-  initiationMinPosY: 3
-  initiationMaxPosY: 4
+  initiationMaxPosX: 6
+  initiationMinPosY: 8
+  initiationMaxPosY: 9
   row: 0
   col: 0
   tileSize: 1
@@ -294,6 +294,8 @@ MonoBehaviour:
   capacityY: 1
   movementSpeedX: 0
   movementSpeedY: 0
+  prepSelect: {fileID: 0}
+  prepCheck: 0
 --- !u!4 &1122649073
 Transform:
   m_ObjectHideFlags: 0

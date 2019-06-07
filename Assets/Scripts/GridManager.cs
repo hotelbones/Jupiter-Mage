@@ -104,7 +104,7 @@ public class GridManager : MonoBehaviour
             { 
                 //Debug.Log(col + "," + row);
                 if(col >= clickScript.selectedCol - playerScript.capacityX && col <= clickScript.selectedCol + playerScript.capacityX 
-                && row >= clickScript.selectedRow - playerScript.capacityY && row <= clickScript.selectedCol + playerScript.capacityY
+                && row >= clickScript.selectedRow - playerScript.capacityY && row <= clickScript.selectedRow + playerScript.capacityY
                 ){
                     Debug.Log("running tile enabler!");
                     tileEnabler = tile[col,row].GetComponent<Collider2D>();
