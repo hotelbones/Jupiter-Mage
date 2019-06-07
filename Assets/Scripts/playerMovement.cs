@@ -11,6 +11,8 @@ public class playerMovement : MonoBehaviour
     public float capacityY;
     public float movementSpeedX;
     public float movementSpeedY;
+    SpriteRenderer prepSelect;
+    public bool prepCheck = false;  
 
 
 
@@ -27,6 +29,7 @@ public class playerMovement : MonoBehaviour
     {
         
         if (Input.GetKeyDown("space") && clickScript.gameStart == true){
+            prepCheck = true;
             TileMove();
         }
         
@@ -49,8 +52,15 @@ public class playerMovement : MonoBehaviour
 
     public void TileMove(){
 
+        prepSelect = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].GetComponent<SpriteRenderer>();
+        prepSelect.color = Color.red;
+
+        if (prepCheck == true){
+
         gameObject.transform.position = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position;
         gridScript.postOrientation();
+        prepCheck = false;
+        }
 
         // if (gameObject.transform.position.x <= clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position.x){
         //     gameObject.transform.position.x += movementSpeedX * Time.deltaTime; 
