@@ -11,12 +11,18 @@ public class GridManager : MonoBehaviour
     public int initiationMaxPosX;
     public int initiationMinPosY;
     public int initiationMaxPosY;
+    
     public  int row;
     public  int col;
     public float tileSize = 1;
     public GameObject [,] tile;
 
     SpriteRenderer highlighter;
+
+    public playerMovement playerScript;
+
+    public clickManager clickScript;
+    Collider2D tileEnabler;
     
     
 
@@ -28,6 +34,8 @@ public class GridManager : MonoBehaviour
        
         
     }
+
+    //Generates the grid and then determines which tiles are navigatable based on public integers. 
 
     public void GenerateGrid()
     {
@@ -46,7 +54,7 @@ public class GridManager : MonoBehaviour
                 float posY = row * -tileSize;
 
                 tile[col,row].transform.position = new Vector2(posX, posY);
-                Collider2D tileEnabler = tile[col,row].GetComponent<Collider2D>();
+                tileEnabler = tile[col,row].GetComponent<Collider2D>();
                 tileEnabler.enabled = false;
                 
                 //If the generated tile is within the given limits, it will also generate a collider, then color those tiles blue.
@@ -68,14 +76,41 @@ public class GridManager : MonoBehaviour
         transform.position = new Vector2(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
     }
 
+    //Resets all the grid blocks after the initial placement
     public void postOrientation(){
+         
          for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < cols; col++)
             {   highlighter = tile[col,row].GetComponent<SpriteRenderer>();
                 if (highlighter.color == Color.blue){
+                    tileEnabler = tile[col,row].GetComponent<Collider2D>();
                     
                     highlighter.color = new Color(255, 255, 255);
+                    tileEnabler.enabled = false;
+                }
+            }
+        }
+        playerCapacity();
+    }
+
+    //Visualizes the places the player can move next. 
+    public void playerCapacity(){
+        
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < cols; col++)
+            { 
+                //Debug.Log(col + "," + row);
+                if(col >= clickScript.selectedCol - playerScript.capacityX && col <= clickScript.selectedCol + playerScript.capacityX 
+                && row >= clickScript.selectedRow - playerScript.capacityY && row <= clickScript.selectedCol + playerScript.capacityY
+                ){
+                    Debug.Log("running tile enabler!");
+                    tileEnabler = tile[col,row].GetComponent<Collider2D>();
+                    highlighter = tileEnabler.GetComponent<SpriteRenderer>();
+                    highlighter.color = Color.blue;
+                    tileEnabler.enabled = true;
                 }
             }
         }

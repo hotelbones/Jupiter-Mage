@@ -7,10 +7,11 @@ public class playerMovement : MonoBehaviour
     public GridManager gridScript;
     public clickManager clickScript;
     public bool initiated = true;
-    public float minZoneX = 2;
-    public float maxZoneX = 5;
-    public float minZoneY = 4;
-    public float maxZoneY = 3;
+    public float capacityX;
+    public float capacityY;
+    public float movementSpeedX;
+    public float movementSpeedY;
+
 
 
     // Start is called before the first frame update
@@ -25,7 +26,9 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         
-        
+        if (Input.GetKeyDown("space") && clickScript.gameStart == true){
+            TileMove();
+        }
         
     }
 
@@ -34,13 +37,26 @@ public class playerMovement : MonoBehaviour
         
 
           //  the character is moved to the clicked tile based on requirements from the grid manager script
-            Debug.Log ("its working!");
-            gameObject.transform.position = clickScript.selectedTile[gridScript.col, gridScript.row].transform.position;
+            
+            gameObject.transform.position = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position;
             
             clickScript.gameStart = true;
 
             gridScript.postOrientation();
 
         
+    }
+
+    public void TileMove(){
+
+        gameObject.transform.position = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position;
+        gridScript.postOrientation();
+
+        // if (gameObject.transform.position.x <= clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position.x){
+        //     gameObject.transform.position.x += movementSpeedX * Time.deltaTime; 
+        // }else{
+
+        // }
+        //implement an animation
     }
 }
