@@ -291,7 +291,9 @@ MonoBehaviour:
   clickScript: {fileID: 1159129278}
   initiated: 1
   capacityX: 1
-  capacityY: 2
+  capacityY: 1
+  movementSpeedX: 0
+  movementSpeedY: 0
 --- !u!4 &1122649073
 Transform:
   m_ObjectHideFlags: 0
