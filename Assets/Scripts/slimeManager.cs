@@ -12,8 +12,6 @@ public class slimeManager : MonoBehaviour
     int xMax;
     int [] slimeCol;
     int [] slimeRow;
-    public int referenceCol;
-    public int referenceRow;
     public GameObject [,] slimeTile;
 
     int newSlimeCol;
@@ -55,9 +53,7 @@ public class slimeManager : MonoBehaviour
                 slimeTile[col,row].transform.SetParent(gridScript.gameObject.transform, true);
                 slimeTile[col,row].name = "slimeTile [" + col + "," + row + "]";
                 slimeCol[col - xMin] = col;
-                referenceCol = col;
                 slimeRow[row - yMin] = row;
-                referenceRow = row; 
                 Debug.Log(gridScript.tile[col,row]);
                 slimeTile[col,row].transform.position = gridScript.tile[col,row].transform.position;
             }
@@ -72,31 +68,33 @@ public class slimeManager : MonoBehaviour
         int selectedSlimeRow = -1;
         runCounter = runCounter + 1;
         Debug.Log("I've run runCounter " + runCounter + " times");
-        //Debug.Log("xMin and yMin = " + xMin + "," + yMin);
+        Debug.Log("yMin and yMax = " + yMin + "," + yMax);
         //Debug.Log("selectedSlime positions = " + selectedSlimeCol + "," + selectedSlimeRow);
-        for (int col = xMin; col <= referenceCol; col++){
+        for (int col = xMin; col <= xMax; col++){
            // Debug.Log("col =  " + col + " -  xMin = " + xMin + " = slimecol[col - xMin] = " + slimeCol[col - xMin]);
-          
+            //Debug.Log("clickScript.selectedCol = " + clickScript.selectedCol + " and selectedSlimeCol = " + selectedSlimeCol); 
+            //Debug.Log(clickScript.selectedCol - selectedSlimeCol); 
             if (selectedSlimeCol == -1){
+                //Debug.Log("col - xMin = " + (col - xMin));
                 selectedSlimeCol = slimeCol[col - xMin];
                 
-//                Debug.Log(slimeCol[col - xMin]); 
+                
             }else if ((clickScript.selectedCol - selectedSlimeCol) == 0){
-                col = referenceCol;
+                col = xMax;
                 Debug.Log("STOPPING");
             }
             else if (Mathf.Abs (selectedSlimeCol - clickScript.selectedCol) > Mathf.Abs(slimeCol[col - xMin] - clickScript.selectedCol)){
-                    Debug.Log("selectedSlime = " + (selectedSlimeCol - clickScript.selectedCol) + " new slime = " + (slimeCol[col-xMin] - clickScript.selectedCol));
+                    //Debug.Log("selectedSlime = " + (selectedSlimeCol - clickScript.selectedCol) + " new slime = " + (slimeCol[col-xMin] - clickScript.selectedCol));
                     selectedSlimeCol = slimeCol[col - xMin];
                     //Debug.Log("TRANSFERRING...");
             }
             
         }
-         for (int row = yMin; row <= referenceRow; row++){
+         for (int row = yMin; row <= yMax; row++){
             if (selectedSlimeRow == -1){
                 selectedSlimeRow = slimeRow[row - yMin];
             }else if ((clickScript.selectedRow - selectedSlimeRow) == 0){
-                row = referenceRow;
+                row = yMax;
                 Debug.Log("STOPPING");
             }else{
                 if (Mathf.Abs(selectedSlimeRow - clickScript.selectedRow) > Mathf.Abs(slimeRow[row - yMin] - clickScript.selectedRow)){
@@ -146,18 +144,18 @@ public class slimeManager : MonoBehaviour
                 if (Mathf.Abs(clickScript.selectedCol - selectedSlimeCol) > Mathf.Abs(clickScript.selectedRow - selectedSlimeRow) || clickScript.selectedCol - selectedSlimeCol == 0){
                    rowCounter = rowCounter + 1;
                    Debug.Log("I've run rowCounter " + rowCounter + " times");
-                   Debug.Log(clickScript.selectedRow - selectedSlimeRow);
+//                   Debug.Log(clickScript.selectedRow - selectedSlimeRow);
                     if (Mathf.Sign(clickScript.selectedRow - selectedSlimeRow) == -1){
                         newSlimeRow = selectedSlimeRow - 1;
                         yMin = yMin - 1;
                         for (int row = yMin; row <= yMax; row++){
-                            slimeCol[row - yMin] = row;
+                            slimeRow[row - yMin] = row;
                         }
                     }else if(Mathf.Sign(clickScript.selectedRow - selectedSlimeRow) == 1){
                         newSlimeRow = selectedSlimeRow + 1;
                         yMax = yMax + 1;
                         for (int row = yMin; row <= yMax; row++){
-                            slimeCol[row - yMin] = row;
+                            slimeRow[row - yMin] = row;
                         }
                     }
                     Debug.Log(selectedSlimeCol + "," + newSlimeRow);
@@ -165,7 +163,7 @@ public class slimeManager : MonoBehaviour
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
                     slimeTile[selectedSlimeCol, newSlimeRow].name = "slimeTile [" + selectedSlimeCol + "," + newSlimeRow + "]";
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.position = gridScript.tile[selectedSlimeCol, newSlimeRow].transform.position;
-                    Debug.Log(selectedSlimeRow);
+//                    Debug.Log(selectedSlimeRow);
                 }
             }
     }
