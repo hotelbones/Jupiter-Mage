@@ -51,6 +51,9 @@ public class playerMovement : MonoBehaviour
         
     }
 
+    //TileMove() has two separate functions that effectively allows the player to plan without taking a turn. If prepCheck is false,
+    //their clicking will only highlight a tile red. However, once they touch space, prepcheck becomes true and their characters then move
+    //to the red highlighted space.
     public void TileMove(){
 
         prepSelect = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].GetComponent<SpriteRenderer>();
@@ -61,9 +64,10 @@ public class playerMovement : MonoBehaviour
         gameObject.transform.position = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position;
         gridScript.postOrientation();
         prepCheck = false;
+        slimeScript.MoveSlime();
         }
 
-        slimeScript.MoveSlime();
+        
 
         // if (gameObject.transform.position.x <= clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position.x){
         //     gameObject.transform.position.x += movementSpeedX * Time.deltaTime; 
