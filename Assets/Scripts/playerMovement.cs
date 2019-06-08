@@ -6,6 +6,7 @@ public class playerMovement : MonoBehaviour
 {
     public GridManager gridScript;
     public clickManager clickScript;
+    public slimeManager slimeScript;
     public bool initiated = true;
     public float capacityX;
     public float capacityY;
@@ -61,6 +62,8 @@ public class playerMovement : MonoBehaviour
         gridScript.postOrientation();
         prepCheck = false;
         }
+
+        slimeScript.MoveSlime();
 
         // if (gameObject.transform.position.x <= clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position.x){
         //     gameObject.transform.position.x += movementSpeedX * Time.deltaTime; 

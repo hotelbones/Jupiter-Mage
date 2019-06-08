@@ -117,7 +117,7 @@ public class GridManager : MonoBehaviour
                 if(col >= clickScript.selectedCol - playerScript.capacityX && col <= clickScript.selectedCol + playerScript.capacityX 
                 && row >= clickScript.selectedRow - playerScript.capacityY && row <= clickScript.selectedRow + playerScript.capacityY
                 ){
-                    Debug.Log("running tile enabler!");
+                    //Debug.Log("running tile enabler!");
                     tileEnabler = tile[col,row].GetComponent<Collider2D>();
                     highlighter = tileEnabler.GetComponent<SpriteRenderer>();
                     highlighter.color = Color.blue;

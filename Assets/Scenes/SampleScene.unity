@@ -294,6 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridScript: {fileID: 657844971}
   clickScript: {fileID: 1159129278}
+  slimeScript: {fileID: 1537802086}
   initiated: 1
   capacityX: 1
   capacityY: 1
@@ -487,3 +488,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridScript: {fileID: 657844971}
+  clickScript: {fileID: 1159129278}
+  referenceCol: 0
+  referenceRow: 0

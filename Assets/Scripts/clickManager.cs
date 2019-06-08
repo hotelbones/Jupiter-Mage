@@ -44,7 +44,7 @@ public class clickManager : MonoBehaviour
                         selectedTile[col, row] = hit.collider;
                         selectedCol = col;
                         selectedRow = row;
-                        Debug.Log(selectedTile[col,row]);
+//                        Debug.Log(selectedTile[col,row]);
                         if (gameStart == false){
                         playerScript.Initiation();
                         // gameStart = true;
