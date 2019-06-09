@@ -97,7 +97,7 @@ public class GridManager : MonoBehaviour
                 if (highlighter.color == Color.blue){
                     tileEnabler = tile[col,row].GetComponent<Collider2D>();
                     
-                    highlighter.color = new Color(255, 255, 255);
+                    highlighter.color = new Color(255, 255, 255, 0);
                     tileEnabler.enabled = false;
                 }
             }
