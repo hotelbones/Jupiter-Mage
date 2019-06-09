@@ -489,3 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridScript: {fileID: 657844971}
   clickScript: {fileID: 1159129278}
+  endSlimeRef: {fileID: 2019770116764043824, guid: f2bcfed66ecaeb345bfb60ba5bfaa525,
+    type: 3}
+  botBool: 0
+  moveCounter: 0
