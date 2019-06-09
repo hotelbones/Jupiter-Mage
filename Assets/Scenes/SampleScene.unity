@@ -296,8 +296,8 @@ MonoBehaviour:
   clickScript: {fileID: 1159129278}
   slimeScript: {fileID: 1537802086}
   initiated: 1
-  capacityX: 1
-  capacityY: 1
+  capacityX: 2
+  capacityY: 2
   movementSpeedX: 0
   movementSpeedY: 0
   prepSelect: {fileID: 0}
@@ -489,5 +489,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridScript: {fileID: 657844971}
   clickScript: {fileID: 1159129278}
-  referenceCol: 0
-  referenceRow: 0

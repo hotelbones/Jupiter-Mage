@@ -104,14 +104,129 @@ public class slimeManager : MonoBehaviour
             }
         }
 
+        Debug.Log("referring to" + selectedSlimeCol + "," + selectedSlimeRow);
+
+          if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null){
+              int rowHold = selectedSlimeRow;
+              int colHold = selectedSlimeCol;
+              //Debug.Log("my time to shine");
+              bool upCheck = false;
+              bool downCheck = false;
+              bool leftCheck = false;
+              bool rightCheck = false;
+            if (upCheck == false){
+            for(int newPos = selectedSlimeRow; newPos > (selectedSlimeRow - yMin); newPos--){
+                //Debug.Log(selectedSlimeRow);
+                if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null && newPos > 0){
+                    selectedSlimeRow = selectedSlimeRow - 1;
+                    Debug.Log(slimeTile[selectedSlimeCol, newPos]);
+                }else{
+                    //Debug.Log("reverting");
+                    selectedSlimeRow = rowHold;
+                    upCheck = true;
+                }
+            } 
+            }
+            // if (downCheck == false){
+            // for (int newPos = selectedSlimeRow; newPos > (yMax - selectedSlimeRow); newPos++){
+            //     Debug.Log("my time to shine...AGAIN");
+            //     if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null && newPos < gridScript.rows){
+            //         selectedSlimeRow = selectedSlimeRow + 1;
+            //         Debug.Log(selectedSlimeCol + "," + newPos);
+            //         Debug.Log(slimeTile[selectedSlimeCol, newPos]);
+            //     }else{
+            //         selectedSlimeRow = rowHold;
+            //         downCheck = true;
+            //     }
+            // }
+            // }
+            //if (leftCheck == false){
+            // for (int newPos = colHold; newPos > (colHold - xMin); newPos--){
+            //     Debug.Log("xshine");
+            //     if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null && newPos > 0){
+            //         selectedSlimeCol = selectedSlimeCol - 1;
+            //         Debug.Log(slimeTile[selectedSlimeCol, newPos]);
+            //     }else{
+            //         Debug.Log("you caught me");
+            //         selectedSlimeCol = colHold;
+            //     }
+            // }
+           // }
+//             if (rightCheck == false){
+                
+//             for (int newPos = selectedSlimeCol; (newPos - 2) < (xMax - selectedSlimeCol); newPos++){
+//                // Debug.Log("xshin2e");
+//                 if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null && selectedSlimeCol < gridScript.cols ){
+//                     selectedSlimeCol = selectedSlimeCol + 1;
+// //                    Debug.Log(slimeTile[selectedSlimeCol, selectedSlimeRow]);
+//                 }else{
+//                     selectedSlimeCol = colHold;
+//                     rightCheck = true;
+//                    // Debug.Log("reverting"); 
+//                 }
+//             }
+//             }
+                                
+         }
+
+         
+
                 //This portion of the function checks if the column is closer to the player, or the row. Then depending on which one is lesser
                 //checks if the direction of the player from the slime is negative or positive on the grid. Then depending on that,
                 //changes the min and maximum of the direction so the array can be expanded. If this number goes outside of the grid
                 //Then assigns the new slime col to the expanded
                 //array. Then that new assigned col generates a new slime tile onto the new position, referencing the previous tile. 
 
-                   Debug.Log("referring to" + selectedSlimeCol + "," + selectedSlimeRow);
-                if ((clickScript.selectedCol - selectedSlimeCol) != 0){
+                
+
+                if(Mathf.Abs(clickScript.selectedCol - selectedSlimeCol) == 1 && Mathf.Abs(clickScript.selectedRow - selectedSlimeRow) == 1){
+                    Debug.Log("flipping");
+                    bool coinFlip = (Random.value > 0.5);
+                    if (coinFlip == true){
+                         if (Mathf.Sign(clickScript.selectedCol - selectedSlimeCol) == -1){
+                        newSlimeCol = selectedSlimeCol - 1;
+                        xMin = xMin - 1;
+                        for (int col = xMin; col <= xMax; col++){
+                            slimeCol[col - xMin] = col;
+                        }
+                        
+                    }else if(Mathf.Sign(clickScript.selectedCol - selectedSlimeCol) == 1){
+                        newSlimeCol = selectedSlimeCol + 1;
+                        xMax = xMax + 1;
+                        for (int col = xMin; col <= xMax; col++){
+                            slimeCol[col - xMin] = col;
+
+                        }
+
+                    }
+
+                    slimeTile[newSlimeCol, selectedSlimeRow] = (GameObject)Instantiate(slimeTile[selectedSlimeCol,selectedSlimeRow], new Vector2(gridScript.tile[newSlimeCol,selectedSlimeRow].transform.position.x, gridScript.tile[newSlimeCol,selectedSlimeRow].transform.position.y), Quaternion.identity);
+                    slimeTile[newSlimeCol, selectedSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
+                    slimeTile[newSlimeCol, selectedSlimeRow].name = "slimeTile [" + newSlimeCol + "," + selectedSlimeRow + "]";
+                    slimeTile[newSlimeCol, selectedSlimeRow].transform.position = gridScript.tile[newSlimeCol, selectedSlimeRow].transform.position;
+
+                    }else if(coinFlip == false){
+                        if (Mathf.Sign(clickScript.selectedRow - selectedSlimeRow) == -1){
+                        newSlimeRow = selectedSlimeRow - 1;
+                        yMin = yMin - 1;
+                        for (int row = yMin; row <= yMax; row++){
+                            slimeRow[row - yMin] = row;
+                        }
+                    }else if(Mathf.Sign(clickScript.selectedRow - selectedSlimeRow) == 1){
+                        newSlimeRow = selectedSlimeRow + 1;
+                        yMax = yMax + 1;
+                        for (int row = yMin; row <= yMax; row++){
+                            slimeRow[row - yMin] = row;
+                        }
+                    }
+                    Debug.Log("instantiating" + selectedSlimeCol + "," + newSlimeRow);
+                    slimeTile[selectedSlimeCol, newSlimeRow] = (GameObject)Instantiate(slimeTile[selectedSlimeCol,selectedSlimeRow], new Vector2(gridScript.tile[selectedSlimeCol,newSlimeRow].transform.position.x, gridScript.tile[selectedSlimeCol,newSlimeRow].transform.position.y), Quaternion.identity);
+                    slimeTile[selectedSlimeCol, newSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
+                    slimeTile[selectedSlimeCol, newSlimeRow].name = "slimeTile [" + selectedSlimeCol + "," + newSlimeRow + "]";
+                    slimeTile[selectedSlimeCol, newSlimeRow].transform.position = gridScript.tile[selectedSlimeCol, newSlimeRow].transform.position;
+                    }
+                }else if ((clickScript.selectedCol - selectedSlimeCol) != 0){
+                    
                 if (Mathf.Abs(clickScript.selectedCol - selectedSlimeCol) < Mathf.Abs(clickScript.selectedRow - selectedSlimeRow)){
                     colCounter = colCounter + 1;
                     Debug.Log("I've run colCounter " + colCounter + " times");
@@ -140,12 +255,13 @@ public class slimeManager : MonoBehaviour
                     
                     }
                 }else if ((clickScript.selectedRow - selectedSlimeRow) != 0){
-                
+                //Debug.Log("initalizing a row");
                 if (Mathf.Abs(clickScript.selectedCol - selectedSlimeCol) > Mathf.Abs(clickScript.selectedRow - selectedSlimeRow) || clickScript.selectedCol - selectedSlimeCol == 0){
                    rowCounter = rowCounter + 1;
                    Debug.Log("I've run rowCounter " + rowCounter + " times");
 //                   Debug.Log(clickScript.selectedRow - selectedSlimeRow);
                     if (Mathf.Sign(clickScript.selectedRow - selectedSlimeRow) == -1){
+                        Debug.Log("And I am going up right now");
                         newSlimeRow = selectedSlimeRow - 1;
                         yMin = yMin - 1;
                         for (int row = yMin; row <= yMax; row++){
@@ -158,7 +274,7 @@ public class slimeManager : MonoBehaviour
                             slimeRow[row - yMin] = row;
                         }
                     }
-                    Debug.Log(selectedSlimeCol + "," + newSlimeRow);
+                    Debug.Log("instantiating" + selectedSlimeCol + "," + newSlimeRow);
                     slimeTile[selectedSlimeCol, newSlimeRow] = (GameObject)Instantiate(slimeTile[selectedSlimeCol,selectedSlimeRow], new Vector2(gridScript.tile[selectedSlimeCol,newSlimeRow].transform.position.x, gridScript.tile[selectedSlimeCol,newSlimeRow].transform.position.y), Quaternion.identity);
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
                     slimeTile[selectedSlimeCol, newSlimeRow].name = "slimeTile [" + selectedSlimeCol + "," + newSlimeRow + "]";
