@@ -2798,16 +2798,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd410757fb3fe6478259b2f3c3236fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 5
-  cols: 8
+  rows: 10
+  cols: 10
   initiationMinPosX: 2
-  initiationMaxPosX: 4
-  initiationMinPosY: 3
-  initiationMaxPosY: 4
-  myxoMinPosX: 0
-  myxoMaxPosX: 0
-  myxoMinPosY: 0
-  myxoMaxPosY: 0
+  initiationMaxPosX: 6
+  initiationMinPosY: 8
+  initiationMaxPosY: 9
+  myxoMinPosX: 6
+  myxoMaxPosX: 9
+  myxoMinPosY: 1
+  myxoMaxPosY: 1
   row: 0
   col: 0
   tileSize: 1
