@@ -4167,10 +4167,15 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
+<<<<<<< HEAD
+  selectedBlocks: []
+  selectedCommands: []
+=======
   selectedBlocks:
   - {fileID: 2115528823}
   selectedCommands:
   - {fileID: 2115528816}
+>>>>>>> 4c3641f070456cdc10ac5db7ee0bb02d5773be53
   variables:
   - {fileID: 2115528846}
   description: 
@@ -4197,9 +4202,74 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+--- !u!114 &2115528860
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115528803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 50
+  indentLevel: 0
+  _targetGameObject:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 159829714}
+  activeState:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  targetGameObjectOLD: {fileID: 0}
+--- !u!114 &2115528861
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115528803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49012bdc794e429686c1eff7d9ced90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 2115528862}
+  clickableObject: {fileID: 1675057293}
+  waitFrames: 1
+--- !u!114 &2115528862
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115528803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 347.13556
+    y: 182.33809
+    width: 134.59961
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 49
+  blockName: GuidanceInGame
+  description: 
+  eventHandler: {fileID: 2115528861}
+  commandList:
+  - {fileID: 2115528860}
+=======
 =======
   endSlimeRef: {fileID: 2019770116764043824, guid: f2bcfed66ecaeb345bfb60ba5bfaa525,
     type: 3}
   botBool: 0
   moveCounter: 0
 >>>>>>> grid-creation
+>>>>>>> 4c3641f070456cdc10ac5db7ee0bb02d5773be53
