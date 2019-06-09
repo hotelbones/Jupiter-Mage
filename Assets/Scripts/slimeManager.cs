@@ -19,6 +19,15 @@ public class slimeManager : MonoBehaviour
     int runCounter;
     int colCounter;
     int rowCounter;
+    int slimeCounter = 0;
+    int slimeCounterCheck = 0;
+
+    int endSlimeX;
+    int endSlimeY;
+    public GameObject endSlimeRef;
+    public bool botBool = false;
+    public int moveCounter = 0;
+    
 
 
 
@@ -54,6 +63,9 @@ public class slimeManager : MonoBehaviour
                 slimeTile[col,row].name = "slimeTile [" + col + "," + row + "]";
                 slimeCol[col - xMin] = col;
                 slimeRow[row - yMin] = row;
+                if (slimeTile[col,row] != null){
+                    slimeCounter = slimeCounter + 1;
+                }
                 Debug.Log(gridScript.tile[col,row]);
                 slimeTile[col,row].transform.position = gridScript.tile[col,row].transform.position;
             }
@@ -64,6 +76,10 @@ public class slimeManager : MonoBehaviour
     //
 
     public void MoveSlime(){
+        
+
+        if (botBool == false){
+        slimeCounterCheck = slimeCounter;
         int selectedSlimeCol = -1;
         int selectedSlimeRow = -1;
         runCounter = runCounter + 1;
@@ -106,27 +122,27 @@ public class slimeManager : MonoBehaviour
 
         Debug.Log("referring to" + selectedSlimeCol + "," + selectedSlimeRow);
 
-          if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null){
-              int rowHold = selectedSlimeRow;
-              int colHold = selectedSlimeCol;
-              //Debug.Log("my time to shine");
-              bool upCheck = false;
-              bool downCheck = false;
-              bool leftCheck = false;
-              bool rightCheck = false;
-            if (upCheck == false){
-            for(int newPos = selectedSlimeRow; newPos > (selectedSlimeRow - yMin); newPos--){
-                //Debug.Log(selectedSlimeRow);
-                if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null && newPos > 0){
-                    selectedSlimeRow = selectedSlimeRow - 1;
-                    Debug.Log(slimeTile[selectedSlimeCol, newPos]);
-                }else{
-                    //Debug.Log("reverting");
-                    selectedSlimeRow = rowHold;
-                    upCheck = true;
-                }
-            } 
-            }
+        //   if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null){
+        //       int rowHold = selectedSlimeRow;
+        //       int colHold = selectedSlimeCol;
+        //       //Debug.Log("my time to shine");
+        //       bool upCheck = false;
+        //       bool downCheck = false;
+        //       bool leftCheck = false;
+        //       bool rightCheck = false;
+        //     if (upCheck == false){
+        //     for(int newPos = selectedSlimeRow; newPos > (selectedSlimeRow - yMin); newPos--){
+        //         //Debug.Log(selectedSlimeRow);
+        //         if (slimeTile[selectedSlimeCol, selectedSlimeRow] == null && newPos > 0){
+        //             selectedSlimeRow = selectedSlimeRow - 1;
+        //             Debug.Log(slimeTile[selectedSlimeCol, newPos]);
+        //         }else{
+        //             //Debug.Log("reverting");
+        //             selectedSlimeRow = rowHold;
+        //             upCheck = true;
+        //         }
+            // } 
+            // }
             // if (downCheck == false){
             // for (int newPos = selectedSlimeRow; newPos > (yMax - selectedSlimeRow); newPos++){
             //     Debug.Log("my time to shine...AGAIN");
@@ -167,7 +183,7 @@ public class slimeManager : MonoBehaviour
 //             }
 //             }
                                 
-         }
+        //  }
 
          
 
@@ -178,7 +194,7 @@ public class slimeManager : MonoBehaviour
                 //array. Then that new assigned col generates a new slime tile onto the new position, referencing the previous tile. 
 
                 
-
+                Debug.Log(slimeCounter);
                 if(Mathf.Abs(clickScript.selectedCol - selectedSlimeCol) == 1 && Mathf.Abs(clickScript.selectedRow - selectedSlimeRow) == 1){
                     Debug.Log("flipping");
                     bool coinFlip = (Random.value > 0.5);
@@ -204,7 +220,7 @@ public class slimeManager : MonoBehaviour
                     slimeTile[newSlimeCol, selectedSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
                     slimeTile[newSlimeCol, selectedSlimeRow].name = "slimeTile [" + newSlimeCol + "," + selectedSlimeRow + "]";
                     slimeTile[newSlimeCol, selectedSlimeRow].transform.position = gridScript.tile[newSlimeCol, selectedSlimeRow].transform.position;
-
+                    slimeCounter = slimeCounter + 1;
                     }else if(coinFlip == false){
                         if (Mathf.Sign(clickScript.selectedRow - selectedSlimeRow) == -1){
                         newSlimeRow = selectedSlimeRow - 1;
@@ -224,6 +240,7 @@ public class slimeManager : MonoBehaviour
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
                     slimeTile[selectedSlimeCol, newSlimeRow].name = "slimeTile [" + selectedSlimeCol + "," + newSlimeRow + "]";
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.position = gridScript.tile[selectedSlimeCol, newSlimeRow].transform.position;
+                    slimeCounter = slimeCounter + 1;
                     }
                 }else if ((clickScript.selectedCol - selectedSlimeCol) != 0){
                     
@@ -249,6 +266,13 @@ public class slimeManager : MonoBehaviour
 //                    Debug.Log(Mathf.Sign(clickScript.selectedCol - selectedSlimeCol));
                     //Debug.Log("instantiating" + newSlimeCol + "," + selectedSlimeRow);
                     slimeTile[newSlimeCol, selectedSlimeRow] = (GameObject)Instantiate(slimeTile[selectedSlimeCol,selectedSlimeRow], new Vector2(gridScript.tile[newSlimeCol,selectedSlimeRow].transform.position.x, gridScript.tile[newSlimeCol,selectedSlimeRow].transform.position.y), Quaternion.identity);
+                   if (slimeTile[newSlimeCol, selectedSlimeRow] != null){
+                        Debug.Log(slimeTile[newSlimeCol, selectedSlimeRow]);
+                    slimeCounter = slimeCounter + 1;
+                    }else{
+                        slimeCounter -= 1;
+                        botBool = true;
+                    }   
                     slimeTile[newSlimeCol, selectedSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
                     slimeTile[newSlimeCol, selectedSlimeRow].name = "slimeTile [" + newSlimeCol + "," + selectedSlimeRow + "]";
                     slimeTile[newSlimeCol, selectedSlimeRow].transform.position = gridScript.tile[newSlimeCol, selectedSlimeRow].transform.position;
@@ -276,11 +300,89 @@ public class slimeManager : MonoBehaviour
                     }
                     Debug.Log("instantiating" + selectedSlimeCol + "," + newSlimeRow);
                     slimeTile[selectedSlimeCol, newSlimeRow] = (GameObject)Instantiate(slimeTile[selectedSlimeCol,selectedSlimeRow], new Vector2(gridScript.tile[selectedSlimeCol,newSlimeRow].transform.position.x, gridScript.tile[selectedSlimeCol,newSlimeRow].transform.position.y), Quaternion.identity);
+                     if (slimeTile[selectedSlimeCol, newSlimeRow] != null){
+                    slimeCounter = slimeCounter + 1;
+                    Debug.Log(slimeTile[selectedSlimeCol, newSlimeRow]);
+                    }else{
+                        Debug.Log("botbool is true");
+                        slimeCounter -= 1;
+                        botBool = true;
+                    }
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.SetParent(gridScript.gameObject.transform, true);
                     slimeTile[selectedSlimeCol, newSlimeRow].name = "slimeTile [" + selectedSlimeCol + "," + newSlimeRow + "]";
                     slimeTile[selectedSlimeCol, newSlimeRow].transform.position = gridScript.tile[selectedSlimeCol, newSlimeRow].transform.position;
+                   
 //                    Debug.Log(selectedSlimeRow);
                 }
             }
+             if (slimeTile[selectedSlimeCol, newSlimeRow] != null){
+                    slimeCounter = slimeCounter + 1;
+                    Debug.Log(slimeTile[selectedSlimeCol, newSlimeRow]);
+                    
+                    }else {
+                        Debug.Log(newSlimeCol);
+                        slimeCounter -= 1;
+                        botBool = true;
+                        // selectedSlimeCol = endSlimeX;
+                        // newSlimeRow = endSlimeY;
+                    }
+             if (slimeTile[newSlimeCol, selectedSlimeRow] != null){
+                        Debug.Log(slimeTile[newSlimeCol, selectedSlimeRow]);
+                    slimeCounter = slimeCounter + 1;
+                    }else{
+                        Debug.Log(selectedSlimeCol);
+                        slimeCounter -= 1;
+                        // endSlimeX = newSlimeRow;
+                        // selectedSlimeCol = endSlimeY;
+                        botBool = true;
+                        
+                    }   
+
+
+
+            if (slimeCounter == slimeCounterCheck || botBool == true){
+                SlimeBot();
+                endSlimeX = selectedSlimeCol;
+                endSlimeY = selectedSlimeRow;
+                Debug.Log(endSlimeX);
+                //endSlimeRef = slimeTile[9,1];
+            }
+        }
     }
+
+
+    public void SlimeBot(){
+        botBool = true;
+        bool botBlock = false;
+        int finalRow = 0;
+        Debug.Log("moveCounter " + moveCounter);
+        for (int col = endSlimeX ; col > endSlimeX - moveCounter; col--){
+             if (botBlock == false ){
+            for(int row = endSlimeY; row < ((gridScript.rows - 6) - moveCounter) ; row++){
+               
+                    if (row > gridScript.rows - 4){
+                        botBlock = true;
+                        finalRow = 3;
+                    }
+                    Debug.Log(botBlock);
+                    Debug.Log(col + "," + row);
+                slimeTile[col,row] = (GameObject)Instantiate(endSlimeRef, new Vector2(gridScript.tile[col,row].transform.position.x, gridScript.tile[col,row].transform.position.y), Quaternion.identity);
+                slimeTile[col,row].transform.SetParent(gridScript.gameObject.transform, true);
+                slimeTile[col,row].transform.position = gridScript.tile[col,row].transform.position;
+                }
+                }
+
+                slimeTile[col,finalRow] = (GameObject)Instantiate(endSlimeRef, new Vector2(gridScript.tile[col,finalRow].transform.position.x, gridScript.tile[col,finalRow].transform.position.y), Quaternion.identity);
+                slimeTile[col,finalRow].transform.SetParent(gridScript.gameObject.transform, true);
+                slimeTile[col,finalRow].transform.position = gridScript.tile[col,finalRow].transform.position;
+                if (slimeTile[1,0] != null){
+                    gameObject.SetActive(false);
+                }
+            
+        }  
+        
+    }
+
+
+
 }
