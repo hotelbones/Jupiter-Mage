@@ -60,11 +60,19 @@ public class playerMovement : MonoBehaviour
         prepSelect.color = Color.red;
 
         if (prepCheck == true){
+        if (slimeScript.gameObject.activeSelf == true){
+        if (slimeScript.botBool == true){
+            slimeScript.moveCounter += 1;
+            slimeScript.SlimeBot();
+        }else{
+            slimeScript.MoveSlime();
+        }
+        }
 
         gameObject.transform.position = clickScript.selectedTile[clickScript.selectedCol, clickScript.selectedRow].transform.position;
         gridScript.postOrientation();
         prepCheck = false;
-        slimeScript.MoveSlime();
+        
         }
 
         
