@@ -2731,7 +2731,7 @@ MonoBehaviour:
   waitFrames: 1
 --- !u!114 &2115528807
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4168,6 +4168,7 @@ MonoBehaviour:
     width: 1114
     height: 859
 <<<<<<< HEAD
+<<<<<<< HEAD
   selectedBlocks: []
   selectedCommands: []
 =======
@@ -4176,6 +4177,12 @@ MonoBehaviour:
   selectedCommands:
   - {fileID: 2115528816}
 >>>>>>> 4c3641f070456cdc10ac5db7ee0bb02d5773be53
+=======
+  selectedBlocks:
+  - {fileID: 2115528812}
+  selectedCommands:
+  - {fileID: 2115528804}
+>>>>>>> parent of b206abf... Menu
   variables:
   - {fileID: 2115528846}
   description: 
@@ -4205,7 +4212,7 @@ Transform:
 <<<<<<< HEAD
 --- !u!114 &2115528860
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4226,7 +4233,7 @@ MonoBehaviour:
   targetGameObjectOLD: {fileID: 0}
 --- !u!114 &2115528861
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4241,7 +4248,7 @@ MonoBehaviour:
   waitFrames: 1
 --- !u!114 &2115528862
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
