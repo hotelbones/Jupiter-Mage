@@ -848,6 +848,7 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654856141}
   m_Enabled: 1
+<<<<<<< HEAD
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1810,12 +1811,15 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537802084}
   m_Enabled: 1
+=======
+>>>>>>> grid-creation
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdbcfb1fb7ba86d4ea2e3dedd1e0ad16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gridScript: {fileID: 657844971}
   clickScript: {fileID: 1159129278}
+<<<<<<< HEAD
 --- !u!1 &1660907999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,3 +4197,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  endSlimeRef: {fileID: 2019770116764043824, guid: f2bcfed66ecaeb345bfb60ba5bfaa525,
+    type: 3}
+  botBool: 0
+  moveCounter: 0
+>>>>>>> grid-creation
